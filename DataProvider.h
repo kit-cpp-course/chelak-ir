@@ -1,9 +1,15 @@
 #pragma once
+#include <armadillo>
 
 namespace data {
-	//Интерфейс, отвечающий за снабжению программы данными, которые нужно кластеризовать.
+	/*
+	 An interface which is necessary for providing a clustering algorithm with the data.
+	*/
 	class DataProvider {
-		//Абстрактный метод, который генерирует массив точек длины numberOfPoints, где каждая точка имеет dimensions координат.
-		virtual double** generate(size_t numberOfPoints, size_t dimensions) = 0;
+	public:
+		/*
+		* An abstract method which is necessary for getting a matrix with points.
+		*/
+		virtual arma::mat getMat() = 0;
 	};
 }

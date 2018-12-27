@@ -1,11 +1,17 @@
 #pragma once
 #include "ProvideK.h"
+#include <armadillo>
 
 namespace cluster {
-	//Интерфейс инициализации K точек, которые будут центрами кластеров.
-	//Для их инициализации нам потребуется значение K
+	/*
+	 An interface which is necessary for initializing K points - cluster centers.
+	*/
 	class InitiateK {
 	public:
-		virtual double* initiate(cluster::ProvideK & provider) = 0;
+		/*
+		 initiates K points and then stores them in a matrix.
+		*/
+	public:
+		virtual arma::mat initiate(cluster::ProvideK & providerOfK, data::DataProvider & providerOfData) = 0;
 	};
 }

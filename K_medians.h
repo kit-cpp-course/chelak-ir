@@ -2,11 +2,15 @@
 #include "ClusterData.h"
 #include "InitiateK.h"
 #include "EvaluateMedian.h"
+#include "ArgStore.h"
 
 namespace cluster {
-	//Алгоритм K-medians для кластеризации набора данных
-	//Получает набор данных, инициированные K точек, алгоритм вычисления мединаны.
-	class K_medians : public ClusterData, public InitiateK, public EvaluateMedian {
-
+	/*
+	 K-Medians algorithm
+	 Gets dataset, k initialized points and an algorithm for evaluating median.
+	*/
+	class K_medians : ClusterData {
+	public:
+		void clusterize(data::DataProvider & providerOfData, ProvideK & providerOfK, InitiateK & initiateK, median::EvaluateMedian & median, double eps, ArgStore & argStore) {}
 	};
 }

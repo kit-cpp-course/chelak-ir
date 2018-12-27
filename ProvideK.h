@@ -2,9 +2,11 @@
 #include "DataProvider.h"
 
 namespace cluster {
-	//Интерфейс, снабжающий нас оптимальным значением K исходя из структуры набора данных.
+	/*
+	 An interface which is necessary for providing us with an optimal value of K depending on the structure of a dataset.
+	*/
 	class ProvideK {
 	public:
-		virtual size_t getK(data::DataProvider & provider) = 0;
+		virtual size_t getK(const data::DataProvider & provider) const = 0;
 	};
 }

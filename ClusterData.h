@@ -7,6 +7,6 @@ namespace cluster {
 	class ClusterData {
 	public:
 		//Clustering Data which is provided from DataProvider.
-		virtual void clusterize(data::DataProvider & providerOfData, ProvideK & providerOfK, InitiateK & initiateK, median::EvaluateMedian & median, double eps, ArgStore & argStore) const = 0;
+		virtual void clusterize(data::DataProvider & providerOfData, ProvideK & providerOfK, InitiateK & initiateK, median::EvaluateMedian & median, ArgStore & argStore, double eps) const = 0;
 	};
 }

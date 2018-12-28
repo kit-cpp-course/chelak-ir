@@ -12,6 +12,6 @@ namespace cluster {
 		 initiates K points and then stores them in a matrix.
 		*/
 	public:
-		virtual arma::mat initiate(cluster::ProvideK & providerOfK, data::DataProvider & providerOfData) = 0;
+		virtual arma::mat initiate(ProvideK & providerOfK, data::DataProvider & providerOfData) const = 0;
 	};
 }

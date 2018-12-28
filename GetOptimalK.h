@@ -11,7 +11,7 @@ namespace cluster {
 		ArgStore argStore = ArgStore::instance();
 
 	public:
-		size_t getK(data::DataProvider & provider) {
+		size_t getK(const data::DataProvider & provider) const {
 			return argStore.K();
 		}
 	};

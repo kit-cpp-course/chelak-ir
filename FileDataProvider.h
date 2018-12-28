@@ -8,7 +8,7 @@ namespace data {
 	/*
 	 The class which is necessary for getting data from a file which stores then as a matrix.
 	*/
-	class FileDataProvider : DataProvider {
+	class FileDataProvider : public DataProvider {
 
 		//Getting path to our origin dataset.
 		ArgStore argStore = ArgStore::instance();

@@ -10,7 +10,7 @@ double manhDistance(arma::rowvec point1, arma::rowvec point2);
 /*
  Clustering with K-medians.
 */
-void clusterize(data::DataProvider & providerOfData, cluster::ProvideK & providerOfK, cluster::InitiateK & initiateK, median::EvaluateMedian & median, ArgStore & argStore, double eps = 10) {
+void cluster::K_medians::clusterize(data::DataProvider & providerOfData, ProvideK & providerOfK, InitiateK & initiateK, median::EvaluateMedian & median, ArgStore & argStore, double eps) const {
 	double Q = datum::inf;	//infinity
 	mat points = providerOfData.getMat();
 	mat setOfK = initiateK.initiate(providerOfK, providerOfData);
@@ -18,12 +18,12 @@ void clusterize(data::DataProvider & providerOfData, cluster::ProvideK & provide
 	double oldQ = 0;
 	do {
 		for (size_t i = 0; i < points.n_rows; i++) {
-			double min = datum::inf;
+			double minimum = datum::inf;
 			size_t index = 0;
 			for (size_t j = 0; j < setOfK.n_rows; j++) {
 				double dist = manhDistance(points.row(i), setOfK.row(j));
-				if (dist < min) {
-					min = dist;
+				if (dist < minimum) {
+					minimum = dist;
 					index = j;
 				}
 			}

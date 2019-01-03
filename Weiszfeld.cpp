@@ -25,7 +25,7 @@ arma::rowvec getMedian(arma::mat setOfPoints, size_t iterations = 200) {
 	arma::rowvec median = mean(setOfPoints);
 	median = checkMedian(median, setOfPoints);
 	arma::rowvec m1;
-	double m2;
+	double m2 = 0;
 	for (size_t i = 0; i < iterations; i++) {
 		for (size_t j = 0; j < setOfPoints.n_rows; j++) {
 			double dist = manhDistance(median, setOfPoints.row(j));

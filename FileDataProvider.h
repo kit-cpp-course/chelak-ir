@@ -25,9 +25,9 @@ namespace data {
 				A.load(name);
 			}
 			catch (exception e) {
-				cout << "There was an error. Please check that your file content looks like a matrix." << endl;
+				cout << "There was an error. Please check if your file content looks like a matrix." << endl;
 				system("pause");
-				exit(0);
+				exit(1);
 			}
 			return A;
 		}

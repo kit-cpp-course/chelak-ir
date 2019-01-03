@@ -11,6 +11,6 @@ namespace cluster {
 	*/
 	class K_medians : public ClusterData {
 	public:
-		void clusterize(data::DataProvider & providerOfData, ProvideK & providerOfK, InitiateK & initiateK, median::EvaluateMedian & median, ArgStore & argStore, double eps) const;
+		void clusterize(data::DataProvider & providerOfData, /*cluster::ProvideK & providerOfK,*/ cluster::InitiateK & initiateK, median::EvaluateMedian & median, ArgStore & argStore, double eps) const;
 	};
 }

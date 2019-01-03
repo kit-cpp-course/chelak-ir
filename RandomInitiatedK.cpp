@@ -1,5 +1,10 @@
 #include "RandomInitiatedK.h"
 
+//I don't know why, but visual studio wants to put it's own defined min
+//instead of min and max from arma so i must to do something like this.
+#define min arma::min
+#define max arma::max
+
 arma::mat initiate(cluster::ProvideK & providerOfK, data::DataProvider & providerOfData) {
 	size_t K = providerOfK.getK(providerOfData);	//getting K.
 	ArgStore argStore = ArgStore::instance();
@@ -13,5 +18,6 @@ arma::mat initiate(cluster::ProvideK & providerOfK, data::DataProvider & provide
 			default_random_engine re;
 			setOfK(i, j) = unif(re);
 		}
-	return setOfK;
+		return setOfK;
+	}
 }

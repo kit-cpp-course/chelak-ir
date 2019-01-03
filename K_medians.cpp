@@ -1,4 +1,7 @@
 #include "K_medians.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 
 using namespace arma;
 
@@ -10,7 +13,7 @@ double manhDistance(arma::rowvec point1, arma::rowvec point2);
 /*
  Clustering with K-medians.
 */
-void cluster::K_medians::clusterize(data::DataProvider & providerOfData, ProvideK & providerOfK, InitiateK & initiateK, median::EvaluateMedian & median, ArgStore & argStore, double eps) const {
+void cluster::K_medians::clusterize(data::DataProvider & providerOfData, cluster::ProvideK & providerOfK, cluster::InitiateK & initiateK, median::EvaluateMedian & median, ArgStore & argStore, double eps) const {
 	double Q = datum::inf;	//infinity
 	mat points = providerOfData.getMat();
 	mat setOfK = initiateK.initiate(providerOfK, providerOfData);
@@ -42,17 +45,30 @@ void cluster::K_medians::clusterize(data::DataProvider & providerOfData, Provide
 		Q = sum;
 	} while (oldQ - Q > eps);
 	//saving clustered set
+	ofstream outputFile(argStore.output(), ios::app);
 	for (size_t i = 0; i < setOfK.n_rows; i++) {
 		rowvec subK = setOfK.row(i);
-		subK.save(argStore.output, arma_ascii);
-		disjointSet[i].save(argStore.output, arma_ascii);
+		subK.save("temp.txt", arma_ascii);
+		ifstream tempFile("temp.txt");
+		outputFile << i << " cluster" << endl << "Center of this cluster:" << endl;
+		char vect[1000];
+		tempFile.getline(vect, 1000);
+		outputFile << vect << endl;
+		disjointSet[i].save("temp.txt", arma_ascii);
+		outputFile << i << "Points from cluster" << endl;
+		while (tempFile.good()) {
+			tempFile.getline(vect, 1000);
+			outputFile << vect << endl;
+		}
+		tempFile.close();
 	}
+	delete(disjointSet);
 }
 
 double manhDistance(arma::rowvec point1, arma::rowvec point2) {
 	double sum = 0;
 	try {
-		for (size_t i = 0; i < point1.n_elem; i++) {
+		for (size_t i = 0; i < max(point1.n_elem, point2.n_elem); i++) {
 			sum += abs(point1(i) - point2(i));
 		}
 	}

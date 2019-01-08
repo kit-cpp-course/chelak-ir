@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <atlimage.h>
 
 using namespace std;
 
